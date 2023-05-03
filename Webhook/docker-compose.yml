@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  db:
+    container_name: db
+    image: mariadb
+    environment:
+      - MYSQL_DATABASE=Database
+      - MYSQL_USER=Root
+      - MYSQL_PASSWORD=Root
+      - MYSQL_ROOT_PASSWORD=Root
+    volumes:
+      - ./mysql:/var/lib/mysql
+  ##########
+  web:
+    container_name: sendgrid_web
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./app:/app
+    ports:
+      - "8023:8000"
+    depends_on:
+      - db
+    environment:
+      - MARIADB_HOST=db
+      - MARIADB_USER=Root
+      - MARIADB_PASSWORD=Root
+      - MARIADB_DATABASE=db
+  ##########
+  system_phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    ports:
+      - '8015:80'
+    environment:
+      - PMA_HOST=db
+volumes:
+  db_data:

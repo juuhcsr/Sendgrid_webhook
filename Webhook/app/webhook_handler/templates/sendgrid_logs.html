@@ -1,0 +1,54 @@
+{% extends 'main/base.html' %}
+{% load mathfilters %}
+
+
+{% block title %} SendGrid Email Logs {% endblock %}
+
+{% block body %}
+
+  <h1>SendGrid Email Logs</h1>
+
+  <form method="get">
+    <label for="status">Filter by status:</label>
+    <select name="status" id="status">
+      <option value="">All</option>
+      <option value="delivered">Delivered</option>
+      <option value="open">Opened</option>
+      <option value="click">Clicked</option>
+      <option value="spamreport">Marked as spam</option>
+    </select>
+    <button type="submit">Filter</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Remetente</th>
+        <th>Campanha</th>
+        <th>Destinatário</th>
+        <th>Assunto</th>
+        <th>Data de envio</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for log in logs %}
+        <tr>
+          <td>{{ log.id }}</td>
+          <td>{{ log.sender }}</td>
+          <td>{{ log.campanha}}</td>
+          <td>{{ log.recipient }}</td>
+          <td>{{ log.subject }}</td>
+          <td>{{ log.date_sent }}</td>
+          <td>{{ log.status }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">Nenhum registro encontrado.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}
