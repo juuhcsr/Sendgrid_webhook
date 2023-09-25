@@ -46,7 +46,8 @@ For a more detailed understanding of the file structure, please refer to the fol
 *   The configuration files are stored in the `config` directory (see snippet).
 
 *   The main files such as `README.md`, `requirements.txt`, \`manage
-<br/>
+
+    <br/>
 
 # Conventions
 
@@ -77,7 +78,8 @@ Testing is an integral part of our development process in the `Sendgrid_webhook`
 *   **Test Files**: Test files are placed in the `tests` directory and follow the same directory structure as the corresponding source code files.
 
 *   \*\*Test Function
-<br/>
+
+    <br/>
 
 # Testing
 
@@ -112,8 +114,31 @@ Integration testing is crucial to ensure that different components of our system
 *   We use the {{TESTING\_FRAMEWORK}} library for writing integration tests.
 
 *   Each test file should focus on testing the interaction between multiple components
+<br/>
 
-    <br/>
+### Diagrama dos arquivos
+
+<br/>
+
+<!--MERMAID {width:100}-->
+```mermaid
+graph TD
+A[urls.py] --> B(views.py)
+B --> C{"Models estão
+criados"}
+C -->|Sim| D[Subir função]
+C -->|Não| E[Criar model]
+
+
+
+```
+<!--MCONTENT {content: "graph TD<br/>\nA\\[urls.py\\] \\-\\-\\> B(views.py)<br/>\nB \\-\\-\\> C{\"Models estão<br/>\ncriados\"}<br/>\nC \\-\\-\\>|Sim| D\\[Subir função\\]<br/>\nC \\-\\-\\>|Não| E\\[Criar model\\]<br/>\n<br/>\n\n<br/>"} --->
+
+<br/>
+
+<br/>
+
+<br/>
 
 <br/>
 
